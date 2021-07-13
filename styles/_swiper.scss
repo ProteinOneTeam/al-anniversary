@@ -1,0 +1,21 @@
+@import "./variables";
+
+.swiper-container {
+  width: 100vw;
+  height: 400px;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  // desktop
+  .swiper-container {
+    width: 1000px;
+    height: 660px;
+  }
+}
+
+.highlightSidePanel {
+  .swiper-container {
+    width: 136px;
+    height: 416px;
+  }
+}

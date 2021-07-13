@@ -1,0 +1,13 @@
+$color-background: #f2733d;
+
+$color-website-background: #fefce4;
+
+$breakpoint-tablet: 769px;
+
+$delay-preloader: 2350ms;
+$delay-landingpage-title: 500ms + $delay-preloader;
+$delay-landingpage-sparks: 900ms + $delay-preloader;
+$delay-landingpage-cta-buttons: 1200ms + $delay-preloader;
+$delay-landingpage-cta-buttons-animate: 900ms + $delay-landingpage-cta-buttons;
+$delay-landingpage-stars: 1700ms + $delay-preloader;
+$delay-landingpage-arrowpaths: 2100ms + $delay-preloader;

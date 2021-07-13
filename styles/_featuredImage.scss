@@ -1,0 +1,54 @@
+.featuredImage-desktop {
+  //desktop values
+  // position: absolute;
+  // top: 50%;
+  // transform: translate(0, -50%);
+  // right: 160px;
+  // z-index: 1;
+
+  display: none;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: initial;
+  }
+}
+
+.featuredImage-mobile {
+  z-index: 1;
+
+  &.featured-highlight-expanded {
+    height: 0px;
+    overflow: hidden;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+
+  img {
+    max-height: 100%;
+
+    //width: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .swiper-container {
+    padding-bottom: 50px;
+    height: auto;
+
+    .swiper-slide {
+      opacity: 0.7;
+      height: 400px;
+      overflow: hidden;
+
+      &-active {
+        opacity: 1;
+      }
+    }
+  }
+}
