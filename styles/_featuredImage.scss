@@ -1,11 +1,4 @@
 .featuredImage-desktop {
-  //desktop values
-  // position: absolute;
-  // top: 50%;
-  // transform: translate(0, -50%);
-  // right: 160px;
-  // z-index: 1;
-
   display: none;
 
   @media (min-width: $breakpoint-tablet) {

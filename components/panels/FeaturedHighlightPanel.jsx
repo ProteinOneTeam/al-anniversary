@@ -105,9 +105,9 @@ const FeaturedHighlightPanel = props => {
                 />
               ) : null}
             </div>
-            <div className="testN">
+            <div className="otherHighlights-container">
               <div className="otherHighlights">
-                <h4>OTHER HIGHLIGHTS</h4>
+                {props?.data?.highlights ? <h4>OTHER HIGHLIGHTS</h4> : null}
                 {props?.data?.highlights ? (
                   <div className="highlightImages">
                     {props.data.highlights.map((node, i) => (
