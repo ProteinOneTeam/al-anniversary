@@ -54,11 +54,11 @@ const HighlightContentPanel = props => {
       isMounted.current = true;
       targetElem.current = document.querySelector('#highlightSidePanel');
       disableBodyScroll(targetElem.current, { reserveScrollBarGap: true });
-      console.log('AboutOverlay - On Component Mount');
+      // console.log('AboutOverlay - On Component Mount');
     }
     return () => {
       isMounted.current = false;
-      console.log('AboutOverlay - On Component Unmount');
+      // console.log('AboutOverlay - On Component Unmount');
     };
   }, []);
 

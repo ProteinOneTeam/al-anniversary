@@ -110,55 +110,74 @@ const FeaturedHighlightPanel = props => {
                 {props?.data?.highlights ? <h4>OTHER HIGHLIGHTS</h4> : null}
                 {props?.data?.highlights ? (
                   <div className="highlightImages">
-                    {props.data.highlights.map((node, i) => (
-                      <div key={node.title}>
-                        <a
-                          href="#"
-                          onClick={e => {
-                            e.preventDefault();
-                            props.toggle(i);
+                    {props.data.highlights.map((node, i) =>
+                      node?.image?.mediaDetails?.sizes ? (
+                        <div
+                          key={node.title}
+                          className="highlightThumbnail lazyload"
+                          style={{
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
                           }}
-                          title={node.title}
+                          data-bg={extractImageSize(
+                            node.image.mediaDetails.sizes,
+                            'name',
+                            'thumbnail',
+                            node.image.sourceUrl
+                          )}
                         >
-                          {node?.image?.mediaDetails?.sizes ? (
+                          <a
+                            href="#"
+                            onClick={e => {
+                              e.preventDefault();
+                              props.toggle(i);
+                            }}
+                            title={node.title}
+                          >
                             <img
-                              src={extractImageSize(
-                                node.image.mediaDetails.sizes,
-                                'name',
-                                'thumbnail',
-                                node.image.sourceUrl
-                              )}
-                              srcSet="/images/placeholder-thumbnail.gif"
-                              data-srcset={extractImageSize(
-                                node.image.mediaDetails.sizes,
-                                'name',
-                                'thumbnail',
-                                node.image.sourceUrl
-                              )}
-                              data-sizes="auto"
-                              className="highlightThumbnail lazyload"
+                              src="/images/placeholder-highlight.gif"
+                              className="highlightThumbnailImage lazyload"
                               alt={node.title}
                             />
-                          ) : props?.data?.featuredImage?.sourceUrl ? (
+                          </a>
+                        </div>
+                      ) : props?.data?.featuredImage?.sourceUrl ? (
+                        <div
+                          key={node.title}
+                          className="highlightThumbnail lazyload"
+                          style={{
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                          }}
+                          data-bg={props.data.featuredImage.sourceUrl}
+                        >
+                          <a
+                            href="#"
+                            onClick={e => {
+                              e.preventDefault();
+                              props.toggle(i);
+                            }}
+                            title={node.title}
+                          >
                             <img
-                              src={props?.data?.featuredImage?.sourceUrl}
-                              srcSet="/images/placeholder-thumbnail.gif"
-                              data-srcset={
-                                props?.data?.featuredImage?.sourceUrl
-                              }
-                              data-sizes="auto"
-                              className="highlightThumbnail lazyload"
-                              alt=""
+                              src="/images/placeholder-highlight.gif"
+                              className="highlightThumbnailImage lazyload"
+                              alt={node.title}
                             />
-                          ) : (
-                            <img
-                              src="/images/placeholder-thumbnail.gif"
-                              alt=""
-                            />
-                          )}
-                        </a>
-                      </div>
-                    ))}
+                          </a>
+                        </div>
+                      ) : (
+                        <div className="highlightThumbnail" key={node.title}>
+                          <img
+                            src="/images/placeholder-highlight.gif"
+                            alt=""
+                            className="highlightThumbnailImage"
+                          />
+                        </div>
+                      )
+                    )}
                   </div>
                 ) : null}
               </div>

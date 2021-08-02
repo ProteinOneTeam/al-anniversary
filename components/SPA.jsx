@@ -50,6 +50,15 @@ const SPA = props => {
       isMounted.current = true;
       // console.log('On Component Mount');
 
+      // Lazysizes background
+      document.addEventListener('lazybeforeunveil', e => {
+        const bg = e.target.getAttribute('data-bg');
+        if (bg) {
+          e.target.style.backgroundImage = `url(${bg})`;
+          // console.log(e);
+        }
+      });
+
       leftPanelRef.current = document.getElementById('leftPanel');
       desktopImageRef.current = document.getElementById('desktopImage');
       featuredHighlightPanelRef.current = document.getElementById(
@@ -353,17 +362,18 @@ const SPA = props => {
   React.useEffect(() => {
     const timeOutId = setTimeout(() => featuredImageTransition(), 100);
     return () => clearTimeout(timeOutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tempYearInt]);
 
   // Get video embed
-  function getVideoEmbed(url) {
-    const regExp =
-      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    const videoId = match && match[2].length === 11 ? match[2] : null;
-    const videoUrl = `//www.youtube.com/embed/${videoId}?autoplay=1&mute=1&cc_load_policy=0&controls=0&disablekb=1&enablejsapi=1&fs=0&iv_load_policy=3&list=user_uploads&playlist=//www.youtube.com/embed/${videoId}&loop=1&modestbranding=1&playsinline=1&rel=0`;
-    return videoUrl;
-  }
+  // function getVideoEmbed(url) {
+  //   const regExp =
+  //     /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  //   const match = url.match(regExp);
+  //   const videoId = match && match[2].length === 11 ? match[2] : null;
+  //   const videoUrl = `//www.youtube.com/embed/${videoId}?autoplay=1&mute=1&cc_load_policy=0&controls=0&disablekb=1&enablejsapi=1&fs=0&iv_load_policy=3&list=user_uploads&playlist=//www.youtube.com/embed/${videoId}&loop=1&modestbranding=1&playsinline=1&rel=0`;
+  //   return videoUrl;
+  // }
 
   // Check if highlight thumbnail exists in array
   const extractImageSize = (arr, key, value, backup) => {

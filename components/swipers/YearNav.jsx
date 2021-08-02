@@ -11,13 +11,13 @@ SwiperCore.use([Mousewheel, Navigation, Controller]);
 
 const YearNav = props => {
   const yearNavSwiperRef = React.useRef();
-  const [yearNavSwiper, setYearNavSwiper] = React.useState(null);
+  // const [yearNavSwiper, setYearNavSwiper] = React.useState(null);
   const [scrollingDown, setScrollingDown] = React.useState(false);
   const [scrollingUp, setScrollingUp] = React.useState(false);
   const intervalCount = React.useRef(0);
   const slideTo = index => {
     // console.log(index);
-    yearNavSwiper.slideTo(index);
+    yearNavSwiperRef.current.swiper.slideTo(index);
   };
   const scrollSpeed = 75;
 
@@ -36,20 +36,19 @@ const YearNav = props => {
     setScrollingUp(false);
   };
   React.useEffect(() => {
+    let interval;
     if (scrollingUp) {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         intervalCount.current += 1;
-        console.log('scrollingUp', intervalCount.current);
+        // console.log('scrollingUp', intervalCount.current);
         if (intervalCount.current > 2) {
-          console.log('This will run every second!');
+          // console.log('This will run every second!');
           yearNavSwiperRef.current?.swiper.slidePrev();
         }
       }, scrollSpeed);
-      return () => clearInterval(interval);
     }
+    return () => clearInterval(interval);
   }, [scrollingUp]);
-  //
-  //
 
   const downButtonMouseDown = () => {
     // console.log('Down Arrow held');
@@ -62,18 +61,19 @@ const YearNav = props => {
     setScrollingDown(false);
   };
   React.useEffect(() => {
+    let interval;
     if (scrollingDown) {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         intervalCount.current += 1;
-        console.log('scrollingDown', intervalCount.current);
+        // console.log('scrollingDown', intervalCount.current);
         if (intervalCount.current > 2) {
-          console.log('This will run every second!');
+          // console.log('This will run every second!');
           yearNavSwiperRef.current?.swiper.slideNext();
           // yearNavSwiperRef.current?.swiper.slideNext();
         }
       }, scrollSpeed);
-      return () => clearInterval(interval);
     }
+    return () => clearInterval(interval);
   }, [scrollingDown]);
 
   return (
@@ -104,6 +104,9 @@ const YearNav = props => {
           controller={{ control: props.controlledSwiper }}
           centeredSlides
           mousewheel
+          observer
+          resizeObserver
+          updateOnWindowResize
           // mobile
           slidesPerView={3.5}
           spaceBetween={19}
@@ -112,7 +115,7 @@ const YearNav = props => {
             769: {
               direction: 'vertical',
               slidesPerView: 9,
-              mousewheel: true,
+              // mousewheel: true,
               // navigation: {
               //   nextEl: '.arrow-down',
               //   prevEl: '.arrow-up',
@@ -124,15 +127,15 @@ const YearNav = props => {
           {props?.data &&
             props?.data?.map(({ node }, index) => (
               <SwiperSlide key={node.title}>
-                {/* <a
+                <a
                   href="#"
                   onClick={e => {
                     e.preventDefault();
-                    // slideTo(index);
+                    slideTo(index);
                   }}
-                > */}
-                {node.title}
-                {/* </a> */}
+                >
+                  {node.title}
+                </a>
               </SwiperSlide>
             ))}
         </Swiper>
