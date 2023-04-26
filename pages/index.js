@@ -8,7 +8,7 @@ export default function Home({ allYears: { edges }, aboutUsData }) {
   return (
     <>
       <Head>
-        <title>Animal Logic 30 Year Anniversary</title>
+        <title>Animal Logic – Our Story</title>
         <link rel="icon" href="/favicon.ico" />
 
         <link
@@ -28,6 +28,23 @@ export default function Home({ allYears: { edges }, aboutUsData }) {
           href="/fonts/Montserrat-Medium.ttf"
           as="font"
           crossOrigin=""
+        />
+
+        <script
+          type="text/javascript"
+          src="https://www.googletagmanager.com/gtag/js?id=UA-39872893-1"
+        />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'UA-39872893-1');
+          `,
+          }}
         />
       </Head>
 
