@@ -78,10 +78,6 @@
 }
 
 .featuredPanel-highlight-image {
-    @media (min-width: $breakpoint-tablet) {
-        display: none;
-    }
-
     display: flex;
     justify-content: center;
 
@@ -110,6 +106,10 @@
 
     &.featured-highlight-expanded {
         animation: expand-out-hightlight-img 250ms ease-out both;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        display: none;
     }
 }
 
